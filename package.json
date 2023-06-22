@@ -1,33 +1,43 @@
 {
-  "namespace": "r2wc",
-  "workspaces": [
-    "packages/*"
+  "name": "@r2wc/core",
+  "version": "1.0.0",
+  "description": "Convert framework components to native Web Components.",
+  "homepage": "https://www.bitovi.com/frontend-javascript-consulting/react-consulting",
+  "author": "Bitovi",
+  "license": "MIT",
+  "keywords": [
+    "Web Component"
   ],
-  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bitovi/react-to-webcomponent.git"
+  },
+  "type": "module",
+  "main": "./dist/core.cjs",
+  "module": "./dist/core.js",
+  "types": "./dist/core.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/core.cjs",
+      "import": "./dist/core.js",
+      "types": "./dist/core.d.ts"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
-    "check-packages": "ts-node ./scripts/check-packages"
-  },
-  "eslintConfig": {
-    "root": true,
-    "extends": "@bitovi/eslint-config/react"
-  },
-  "prettier": {
-    "semi": false,
-    "trailingComma": "all"
-  },
-  "devDependencies": {
-    "@bitovi/eslint-config": "^1.5.0",
-    "@testing-library/jest-dom": "^5.16.5",
-    "depcheck": "^1.4.3",
-    "eslint": "^8.25.0",
-    "jsdom": "^22.0.0",
-    "nx": "15.9.2",
-    "prettier": "^2.7.1",
-    "semver": "^7.5.0",
-    "ts-node": "^10.9.1",
-    "typescript": "^4.9.5",
-    "vite": "^4.3.1",
-    "vite-plugin-dts": "^2.3.0",
-    "vitest": "^0.30.1"
+    "typecheck": "tsc --noEmit",
+    "eslint": "eslint vite.config.ts src",
+    "prettier": "prettier --check vite.config.ts src",
+    "depcheck": "depcheck .",
+    "dev": "vite",
+    "test": "vitest",
+    "test:ci": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "clean": "rm -rf tsconfig.tsbuildinfo dist",
+    "build": "vite build"
   }
 }
